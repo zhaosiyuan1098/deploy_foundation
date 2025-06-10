@@ -18,6 +18,8 @@ enum DataLocation { HOST = 0, DEVICE = 1, UNKOWN = 2 };
 
 enum ImageDataFormat { YUV = 0, RGB = 1, BGR = 2, GRAY = 3 };
 
+enum InferCoreType { ONNXRUNTIME, TENSORRT, RKNN, NOT_PROVIDED };
+
 #define CHECK_STATE(state, hint) \
 {                              \
 if (!(state))                \
