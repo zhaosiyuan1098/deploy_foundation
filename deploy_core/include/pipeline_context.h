@@ -20,15 +20,15 @@ namespace async_pipeline
     public:
         AsyncPipelineContext()=default;
 
-        explicit AsyncPipelineContext(const Block_t &block) : blocks_({block}){};
+        AsyncPipelineContext(const Block_t &block) : blocks_({block}){};
 
-        explicit AsyncPipelineContext(const std::vector<Block_t> &block_vec);
+        AsyncPipelineContext(const std::vector<Block_t> &block_vec);
 
         AsyncPipelineContext &operator=(const std::vector<Block_t> &block_vec);
 
         AsyncPipelineContext(const Context_t &context) : blocks_(context.blocks_){};
 
-        explicit AsyncPipelineContext(const std::vector<Context_t> &context_vec);
+        AsyncPipelineContext(const std::vector<Context_t> &context_vec);
 
         AsyncPipelineContext &operator=(const std::vector<Context_t> &context_vec);
 

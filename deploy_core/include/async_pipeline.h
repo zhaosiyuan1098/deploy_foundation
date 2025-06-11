@@ -41,7 +41,7 @@ namespace async_pipeline
     class IPipelinePackage
     {
     public:
-        virtual std::shared_ptr<infer_core::IBlobBuffer> GetInferBuffer() = 0;
+        virtual std::shared_ptr<infer_core::IBlobsBuffer> GetInferBuffer() = 0;
 
     protected:
         virtual ~IPipelinePackage() = default;
@@ -110,7 +110,7 @@ namespace async_pipeline
             map_index2result_.erase(package_index);
             return true;
         };
-        map_name2instance_[pipeline_name].PushPipeline(package, callback);
+        map_name2instance_[pipeline_name].push(package, callback);
 
         package_index_++;
 
@@ -124,7 +124,7 @@ namespace async_pipeline
         {
             return false;
         }
-        return map_name2instance_[pipeline_name].IsInitialized();
+        return map_name2instance_[pipeline_name].isInitialized();
     }
 
     template <typename ResultType, typename GenResult>

@@ -11,7 +11,7 @@
 
 namespace infer_core
 {
-    class IBlobBuffer
+    class IBlobsBuffer
     {
     public:
         virtual std::pair<void*, DataLocation> getOuterBlobBuffer(const std::string& blob_name) =0;
@@ -23,7 +23,7 @@ namespace infer_core
         virtual void reset() =0;
 
     protected:
-        virtual ~IBlobBuffer() = default;
+        virtual ~IBlobsBuffer() = default;
         virtual void release() =0;
     };
 }
