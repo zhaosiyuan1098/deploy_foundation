@@ -14,7 +14,7 @@ struct BBox2D {
     float cls;
 };
 
-enum DataLocation { HOST = 0, DEVICE = 1, UNKOWN = 2 };
+enum DataLocation { HOST = 0, DEVICE = 1, UNKNOWN = 2 };
 
 enum ImageDataFormat { YUV = 0, RGB = 1, BGR = 2, GRAY = 3 };
 
@@ -29,7 +29,7 @@ return false;              \
 }                            \
 }
 
-#define MESSURE_DURATION(run)                                                                \
+#define MEASURE_DURATION(run)                                                                \
 {                                                                                          \
 auto start = std::chrono::high_resolution_clock::now();                                  \
 (run);                                                                                   \
@@ -38,7 +38,7 @@ LOG(INFO) << #run << " cost(us): "                                              
 << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count(); \
 }
 
-#define MESSURE_DURATION_AND_CHECK_STATE(run, hint)                                          \
+#define MEASURE_DURATION_AND_CHECK_STATE(run, hint)                                          \
 {                                                                                          \
 auto start = std::chrono::high_resolution_clock::now();                                  \
 CHECK_STATE((run), hint);                                                                \

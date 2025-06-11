@@ -6,12 +6,9 @@
 #define PIPELINE_BLOCK_H
 
 #include <functional>
-#include <future>
 
-#include <glog/log_severity.h>
-#include <glog/logging.h>
 
-#include "deploy_core/block_queue.h"
+#include "block_queue.h"
 
 namespace async_pipeline
 {
@@ -52,6 +49,14 @@ namespace async_pipeline
         std::function<bool(ParsingType)> func_;
         std::string block_name_;
     };
+
+    template <typename ParsingType>
+    AsyncPipelineBlock<ParsingType>& AsyncPipelineBlock<ParsingType>::operator=(const AsyncPipelineBlock& block)
+    {
+        func_       = block.func_;
+        block_name_ = block.block_name_;
+        return *this;
+    }
 }
 
 

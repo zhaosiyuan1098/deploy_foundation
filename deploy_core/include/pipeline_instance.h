@@ -9,6 +9,8 @@
 #include "block_queue.h"
 namespace async_pipeline
 {
+
+
     template <typename ParsingType>
     class AsyncPipelineInstance
     {
@@ -35,7 +37,7 @@ namespace async_pipeline
     protected:
         ~AsyncPipelineInstance();
     private:
-        bool ThreadExcuteEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input,
+        bool ThreadExecuteEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input,
                          std::shared_ptr<BlockQueue<InnerParsingType>> bq_output,
                          const InnerBlock_t                           &pipeline_block);
         bool ThreadOutputEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input);
@@ -82,11 +84,11 @@ namespace async_pipeline
         // 2. open `n` async threads to execute blocks
         for (int i = 0; i < n; ++i)
         {
-            async_futures_[i] = std::async(&PipelineInstance::ThreadExcuteEntry, this, block_queue_[i],
+            async_futures_[i] = std::async(&AsyncPipelineInstance::ThreadExecuteEntry, this, block_queue_[i],
                                            block_queue_[i + 1], blocks[i]);
         }
         // 3. open output threads to execute callback
-        async_futures_[n] = std::async(&PipelineInstance::ThreadOutputEntry, this, block_queue_[n]);
+        async_futures_[n] = std::async(&AsyncPipelineInstance::ThreadOutputEntry, this, block_queue_[n]);
 
         pipeline_initialized_.store(true);
     }
@@ -142,7 +144,7 @@ namespace async_pipeline
     template <typename ParsingType>
     void AsyncPipelineInstance<ParsingType>::push(const ParsingType& obj, const Callback_t& callback)
     {
-        auto inner_pack      = std::make_shared<_InnerPackage>();
+        auto inner_pack      = std::make_shared<InnerPackage>();
         inner_pack->package  = obj;
         inner_pack->callback = callback;
 
@@ -156,7 +158,7 @@ namespace async_pipeline
     }
 
     template <typename ParsingType>
-    bool AsyncPipelineInstance<ParsingType>::ThreadExcuteEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input,
+    bool AsyncPipelineInstance<ParsingType>::ThreadExecuteEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input,
         std::shared_ptr<BlockQueue<InnerParsingType>> bq_output, const InnerBlock_t& pipeline_block)
     {
         LOG(INFO) << "[AsyncPipelineInstance] {" << pipeline_block.GetName() << "} thread start!";
@@ -185,7 +187,7 @@ namespace async_pipeline
             if (!status)
             {
                 LOG(WARNING) << "[AsyncPipelineInstance] {" << pipeline_block.GetName()
-                             << "}, excute block function failed! Drop package.";
+                             << "}, execute block function failed! Drop package.";
                 continue;
             }
 

@@ -8,7 +8,6 @@
 #include <functional>
 #include <future>
 #include <memory>
-#include <thread>
 #include <unordered_map>
 
 #include <glog/logging.h>
