@@ -47,6 +47,16 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/root/CLionProjects/deploy_foundationpose/cmake-build-debug/deploy_core/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/root/CLionProjects/deploy_foundationpose/cmake-build-debug/triton_core/cmake_install.cmake")
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/root/CLionProjects/deploy_foundationpose/cmake-build-debug/foundationpose/cmake_install.cmake")
+endif()
+
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)

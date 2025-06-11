@@ -1,29 +1,12 @@
-cmake_minimum_required(VERSION 3.31)
-project(deploy_core)
+# deploy_core/CMakeLists.txt
 
+# 这个库是 header-only, 所以它是一个 INTERFACE 库
+add_library(deploy_core INTERFACE)
 
-add_compile_options(-std=c++20)
-add_compile_options(-O1 -Wextra -Wdeprecated -fPIC)
-set(CMAKE_CXX_STANDARD 20)
-
-find_package(OpenCV REQUIRED)
-find_package(glog REQUIRED)
-
-include_directories(
-        include
-        ${OpenCV_INCLUDE_DIRS}
+# 它没有自己的源文件或依赖，但它提供了头文件
+# INTERFACE 关键字意味着任何链接到它的目标都会自动获得这个 include 目录
+target_include_directories(deploy_core
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
-
-set(source_file main.cpp
-)
-
-add_library(${PROJECT_NAME} SHARED ${source_file})
-
-target_link_libraries(${PROJECT_NAME} PUBLIC
-        ${OpenCV_LIBS}
-        glog::glog
-)
-
-target_include_directories(${PROJECT_NAME} PUBLIC include)
-
-

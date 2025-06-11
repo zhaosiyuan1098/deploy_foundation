@@ -1,4 +1,0 @@
-# ninja log v6
-1	35	1749563393647419264	build.ninja	993bd8455edd83ab
-0	248	1749563381379027983	deploy_core/CMakeFiles/deploy_core.dir/main.cpp.o	30cf299b5664cb1b
-249	369	1749563381628035927	lib/libdeploy_core.so	f90565a8e7558107
