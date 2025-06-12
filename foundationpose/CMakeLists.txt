@@ -1,21 +1,20 @@
-# foundationpose_lib/CMakeLists.txt
+# foundationpose/CMakeLists.txt
 
-# 1. 定义源文件列表
+# 1. Define source files
 set(FOUNDATIONPOSE_SOURCES
         src/foundationpose.cpp
 )
 
-# 2. 创建一个共享库
-add_library(foundationpose_lib SHARED ${FOUNDATIONPOSE_SOURCES})
+# 2. Create the shared library with the new name
+add_library(foundationpose SHARED ${FOUNDATIONPOSE_SOURCES}) # <-- Changed from foundationpose_lib
 
-# 3. 指定头文件目录
-target_include_directories(foundationpose_lib PUBLIC
+# 3. Specify include directories for the new target name
+target_include_directories(foundationpose PUBLIC # <-- Changed from foundationpose_lib
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
 )
 
-# 4. 链接依赖项
-#    它依赖 triton_core 来执行推理
-target_link_libraries(foundationpose_lib PRIVATE
-        triton_core
+# 4. Link dependencies to the new target name
+target_link_libraries(foundationpose PUBLIC # <-- Changed from foundationpose_lib
+        tensorrt_core
 )

@@ -90,12 +90,7 @@ namespace infer_core
     };
 
 
-    class BaseInferCoreFactory
-    {
-    public:
-        virtual std::shared_ptr<infer_core::BaseInferCore> Create() = 0;
-        virtual ~BaseInferCoreFactory() = default;
-    };
+
 
 
 

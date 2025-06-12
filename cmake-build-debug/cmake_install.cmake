@@ -49,7 +49,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/root/CLionProjects/deploy_foundationpose/cmake-build-debug/triton_core/cmake_install.cmake")
+  include("/root/CLionProjects/deploy_foundationpose/cmake-build-debug/tensorrt_core/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

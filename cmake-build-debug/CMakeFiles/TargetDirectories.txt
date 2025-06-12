@@ -1,5 +1,11 @@
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/CMakeFiles/foundationpose_app.dir
 /root/CLionProjects/deploy_foundationpose/cmake-build-debug/CMakeFiles/edit_cache.dir
 /root/CLionProjects/deploy_foundationpose/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/root/CLionProjects/deploy_foundationpose/cmake-build-debug/deploy_core/CMakeFiles/deploy_core.dir
 /root/CLionProjects/deploy_foundationpose/cmake-build-debug/deploy_core/CMakeFiles/edit_cache.dir
 /root/CLionProjects/deploy_foundationpose/cmake-build-debug/deploy_core/CMakeFiles/rebuild_cache.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/tensorrt_core/CMakeFiles/tensorrt_core.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/tensorrt_core/CMakeFiles/edit_cache.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/tensorrt_core/CMakeFiles/rebuild_cache.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/foundationpose/CMakeFiles/foundationpose.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/foundationpose/CMakeFiles/edit_cache.dir
+/root/CLionProjects/deploy_foundationpose/cmake-build-debug/foundationpose/CMakeFiles/rebuild_cache.dir
