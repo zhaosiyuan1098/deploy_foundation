@@ -26,9 +26,12 @@ public:
     int size();
     bool empty();
     void setNoMoreInput();
+    ~BlockQueue() ;
+    void DisableAndClear();
+
 
 protected:
-    ~BlockQueue() ;
+
 private:
     const size_t max_size_;
     std::queue<T> queue_;
@@ -133,7 +136,7 @@ void BlockQueue<T>::disablePush()
 }
 
 template <typename T>
-bool BlockQueue<T>::disablePop()
+void BlockQueue<T>::disablePop()
 {
     pop_enabled_.store(false);
     consumer_cv_.notify_all();
@@ -177,6 +180,15 @@ BlockQueue<T>::~BlockQueue()
 {
     disablePush();
     disablePop();
+}
+
+template <typename T>
+void BlockQueue<T>::DisableAndClear()
+{
+    disablePush();
+    disablePop();
+    std::unique_lock<std::mutex> u_lck(mutex_);
+    while (!queue_.empty()) queue_.pop();
 }
 
 

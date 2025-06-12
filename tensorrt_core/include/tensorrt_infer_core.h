@@ -15,17 +15,19 @@
 
 namespace infer_core
 {
+
+    static bool FileSuffixCheck(const std::string& file_path, const std::string& suffix);
     std::shared_ptr<BaseInferCore> CreateTrtInferCore(
-        std::string model_path,
-        const std::unordered_map<std::string, std::vector<int64_t>>& input_blobs_shape = {},
-        const std::unordered_map<std::string, std::vector<int64_t>>& output_blobs_shape = {},
-        int mem_buf_size = 5);
+        std::string                                                  model_path,
+        const std::unordered_map<std::string, std::vector<int64_t>> &input_blobs_shape  = {},
+        const std::unordered_map<std::string, std::vector<int64_t>> &output_blobs_shape = {},
+        const int                                                    mem_buf_size       = 5);
 
     std::shared_ptr<BaseInferCoreFactory> CreateTrtInferCoreFactory(
-        std::string model_path,
-        const std::unordered_map<std::string, std::vector<int64_t>>& input_blobs_shape = {},
-        const std::unordered_map<std::string, std::vector<int64_t>>& output_blobs_shape = {},
-        int mem_buf_size = 5);
+        std::string                                                  model_path,
+        const std::unordered_map<std::string, std::vector<int64_t>> &input_blobs_shape  = {},
+        const std::unordered_map<std::string, std::vector<int64_t>> &output_blobs_shape = {},
+        const int                                                    mem_buf_size       = 5);
 
     class TrtInferCore : public BaseInferCore
     {
@@ -39,7 +41,6 @@ namespace infer_core
         bool Inference(std::shared_ptr<async_pipeline::IPipelinePackage> buffer) override;
         bool PostProcess(std::shared_ptr<async_pipeline::IPipelinePackage> buffer) override;
 
-    protected:
         ~TrtInferCore() override;
 
     private:

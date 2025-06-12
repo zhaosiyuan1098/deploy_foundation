@@ -35,7 +35,6 @@ namespace async_pipeline
         AsyncPipelineContext &operator=(const Context_t &context);
 
 
-    private:
         std::vector<Block_t> blocks_;
     };
 

@@ -34,7 +34,6 @@ namespace async_pipeline
         [[nodiscard]] bool isInitialized() const;
         const Context_t &GetContext() const;
         void push(const ParsingType &obj, const Callback_t &callback);
-    protected:
         ~AsyncPipelineInstance();
     private:
         bool ThreadExecuteEntry(std::shared_ptr<BlockQueue<InnerParsingType>> bq_input,
@@ -148,7 +147,7 @@ namespace async_pipeline
         inner_pack->package  = obj;
         inner_pack->callback = callback;
 
-        block_queue_[0]->BlockPush(inner_pack);
+        block_queue_[0]->blockPush(inner_pack);
     }
 
     template <typename ParsingType>
@@ -191,7 +190,7 @@ namespace async_pipeline
                 continue;
             }
 
-            bq_output->BlockPush(data.value());
+            bq_output->blockPush(data.value());
         }
         LOG(INFO) << "[AsyncPipelineInstance] {" << pipeline_block.GetName() << "} thread quit!";
         return true;
