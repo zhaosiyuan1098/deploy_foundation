@@ -504,6 +504,7 @@ FoundationPose::ScorePreprocess(std::shared_ptr<async_pipeline::IPipelinePackage
   std::vector<Eigen::Vector3f> trans_delta(poses_num);
   std::vector<Eigen::Vector3f> rot_delta(poses_num);
   std::vector<Eigen::Matrix3f> rot_mat_delta(poses_num);
+  //计算trans和rot的微调量
   for (int i = 0 ; i < poses_num ; ++ i) {
     const size_t offset = i * 3;
     trans_delta[i] << trans_ptr[offset], trans_ptr[offset+1], trans_ptr[offset+2];
@@ -518,10 +519,12 @@ FoundationPose::ScorePreprocess(std::shared_ptr<async_pipeline::IPipelinePackage
   std::vector<Eigen::Matrix4f> refine_poses(poses_num);
   for (int i = 0 ; i < poses_num ; ++ i) {
     refine_poses[i] = hyp_poses[i];
+    //微调trans和rot
     refine_poses[i].col(3).head(3) += trans_delta[i];
 
     Eigen::Matrix3f top_left_3x3 = refine_poses[i].block<3,3>(0,0);
     Eigen::Matrix3f result_3x3 = rot_mat_delta[i] * top_left_3x3;
+    //refine_pose为scorer中输入的候选者
     refine_poses[i].block<3,3>(0,0) = result_3x3;
   }
 
@@ -532,6 +535,7 @@ FoundationPose::ScorePreprocess(std::shared_ptr<async_pipeline::IPipelinePackage
   scorer_blob_buffer->setBlobBuffer(TRANSF_INPUT_BLOB_NAME, DataLocation::DEVICE);
   scorer_blob_buffer->setBlobBuffer(SCORE_OUTPUT_BLOB_NAME, DataLocation::DEVICE);
   auto& score_renderer = map_name2renderer_[package->target_name];
+  //用refineposes生成渲染数据Render Data和Transform/Crop Data，存入RENDER_INPUT_BLOB和TRANSF_INPUT_BLOB
   CHECK_STATE(score_renderer->RenderAndTransform(refine_poses,
                         package->rgb_on_device.get(), 
                         package->depth_on_device.get(), 

@@ -32,8 +32,8 @@ target_link_libraries(external_deps INTERFACE
 add_subdirectory(deploy_core)
 add_subdirectory(tensorrt_core)
 add_subdirectory(foundationpose)
-add_subdirectory(detection_6d_foundationpose)
-add_subdirectory(simple_tests)
+add_subdirectory(foundationpose_core)
+add_subdirectory(tests)
 
 add_executable(foundationpose_app main.cpp)
 
