@@ -6,9 +6,10 @@
 * 核心架构是一个模块化的异步处理流水线，深度融合基于GPU 的渲染（nvdiffrast）
 与视觉处理（CV-CUDA）技术，从RGB-D 数据流中实现高效率、低延迟的物体初始位姿解算与连续跟踪。
 
+### 与原始模型对比， 第一帧推理加速**9.84**倍，后续帧跟踪加速**14.61**倍。
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/d5413ee9-d2d7-41f0-8312-6ed1e566160f" width="1000" height="750" />
+  <img src="https://github.com/user-attachments/assets/d5413ee9-d2d7-41f0-8312-6ed1e566160f" width="400" height="300" />
 </div>
 
 ## 结构
@@ -169,22 +170,8 @@ std::cout << "Tracked Pose: \n" << tracked_pose << std::endl;
 
 
 ---
-与原始模型对比， Register加速**9.84**倍，Track加速**14.61**倍。
 
-原始模型测试如下：
-![origin](./pic/origin.jpg)
----
-测试代码test_foundationpose.cpp中包含了完整的调用流程。
 
-该测试会：
-
-1. 加载一个测试物体的RGB、深度图和Mask。
-2. 调用`Register()`进行初始化。
-3. 加载后续视频帧，并循环调用`Track()`进行追踪。
-4. 使用`draw3DBoundingBox`函数将计算出的6D位姿（表现为一个3D包围盒）绘制在原始RGB图像上。
-5. 将处理后的图像帧保存为图片序列，并最终合成为一个MP4视频文件`test_foundationpose_result.mp4`。
-
-可以运行测试，并在指定的输出路径查看带有3D包围盒的位姿估计结果视频。
 
 ## 参考
 
