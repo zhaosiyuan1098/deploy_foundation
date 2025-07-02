@@ -7,9 +7,9 @@
 与视觉处理（CV-CUDA）技术，从RGB-D 数据流中实现高效率、低延迟的物体初始位姿解算与连续跟踪。
 
 
-
-https://github.com/user-attachments/assets/a7d15577-96db-4c5d-958c-8cb2a0750ac0
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d5413ee9-d2d7-41f0-8312-6ed1e566160f" width="1000" height="750" />
+</div>
 
 ## 结构
 原算法实现流程如下
