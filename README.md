@@ -5,6 +5,12 @@
 * 通过集成 NVIDIA TensorRT 实现模型推理加速。
 * 核心架构是一个模块化的异步处理流水线，深度融合基于GPU 的渲染（nvdiffrast）
 与视觉处理（CV-CUDA）技术，从RGB-D 数据流中实现高效率、低延迟的物体初始位姿解算与连续跟踪。
+
+
+
+https://github.com/user-attachments/assets/a7d15577-96db-4c5d-958c-8cb2a0750ac0
+
+
 ## 结构
 原算法实现流程如下
 ![](/pic/all.png)
