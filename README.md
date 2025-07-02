@@ -13,7 +13,7 @@
 
 * 使用nvdiffrast并行渲染生成多候选位姿的3维模型与2维图片 
 
-* 使用encoder架构完成最终位姿选择
+* 使用encoder-decoder架构完成最终位姿选择
 
 ### 模型
 
@@ -161,8 +161,13 @@ std::cout << "Tracked Pose: \n" << tracked_pose << std::endl;
 | **总计 (Total)** | **单次流程总耗时** | **~99,110 µs (~99.1 ms)** | **~2,391 µs (~2.4 ms)** |
 | **估算帧率 (FPS)** | **Frames Per Second** | **~10 FPS** | **~418 FPS** |
 
----
 
+---
+与原始模型对比， Register加速**9.84**倍，Track加速**14.61**倍。
+
+原始模型测试如下：
+![origin](./pic/origin.jpg)
+---
 测试代码test_foundationpose.cpp中包含了完整的调用流程。
 
 该测试会：
