@@ -1,10 +1,10 @@
 # deploy_foundation
 
 ## 介绍
-* 基于C++20 和CUDA 技术栈构建为FoundationPose模型设计的高性能6D 物体位姿估计部署方案。
-* 通过集成 NVIDIA TensorRT 实现模型推理加速。
-* 核心架构是一个模块化的异步处理流水线，深度融合基于GPU 的渲染（nvdiffrast）
-与视觉处理（CV-CUDA）技术，从RGB-D 数据流中实现高效率、低延迟的物体初始位姿解算与连续跟踪。
+* 基于C++20和CUDA构建视觉大模型推理框架
+* 为FoundationPose模型实现部署与推理加速
+* 集成 NVIDIA TensorRT
+
 
 ### 与原始模型对比， 第一帧推理加速**9.84**倍，后续帧跟踪加速**14.61**倍。
 
@@ -16,11 +16,6 @@
 原算法实现流程如下
 ![](/pic/all.png)
 
-故使用refiner和scorer，分别完成：
-
-* 使用nvdiffrast并行渲染生成多候选位姿的3维模型与2维图片 
-
-* 使用encoder-decoder架构完成最终位姿选择
 
 ### 模型
 
